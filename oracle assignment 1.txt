@@ -1,0 +1,95 @@
+Assignment 13.03.2023
+
+#Question 1
+create table department10(
+deptno int primary key,
+deptname varchar(20) unique,
+floor number(2),
+location varchar(20)
+);
+
+desc department10
+
+create table employee10(
+employeeno int primary key,
+managerid number(3),
+firstname varchar(20),
+lasttname varchar(20),
+userid varchar(20),
+deptno number(2),
+salary number(5,2),
+commission number(3),
+joiningdate date,
+designation varchar(25),
+constraint fk_12 foreign key (deptno) references department10 (deptno) on delete cascade);
+desc employee10
+
+
+alter table employee10 add pf number(5,2) check (pf<5000)
+alter table employee10 add hra number(5,2)
+
+#Question 2
+create table customer10(
+customerno int primary key,
+custname varchar(20),
+address varchar(40)
+);
+desc customer10
+
+create table order10(
+orderno number(3) primary key,
+customerno number(3),
+orderdate date,
+constraint fk_10 foreign key (customerno) references customer10 (customerno) on delete cascade);
+desc order10
+
+create table orderitem(
+itemid number(3) primary key,
+orderno number(3),
+itemname varchar(20),
+quantity number(2),
+constraint fk_11 foreign key (orderno) references order10 (orderno) on delete cascade);
+desc orderitem
+
+alter table customer10 modify address varchar(100)
+
+
+#Question 3
+
+create table course(
+courseid varchar(5) primary key,
+streamid varchar(20),
+title varchar(40),
+description varchar(200),
+fees int
+);
+desc course
+
+create table batch(
+  batchid varchar2(30) primary key not null,
+  courseid varchar2(5),
+  batchname char(1),
+  constraint Bh_01 foreign key(courseid ) references course(courseid ));
+
+desc batch
+
+create table student(
+  studid varchar2(20) primary key not null,
+  batchid varchar2(30),
+  lastname varchar2(25),
+  middlename varchar2(30),
+  firstname varchar2(20),
+  dob date,
+  adress varchar2(50),
+  city varchar2(20),
+  state varchar2(2),
+  zipcode varchar2(9),
+  telephone varchar2(10),
+  fax varchar2(10),
+  email varchar2(30),
+  grade char(1),
+  constraint st_01 foreign key(batchid ) references batch(batchid )
+);
+alter table student add constraint grade check(grade in ('A','A+','A-','B','B+','B-','C','C+','C-','D','D+','D-','F','F+','F-'));
+
+desc student

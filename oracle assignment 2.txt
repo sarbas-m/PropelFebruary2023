@@ -1,0 +1,142 @@
+
+#assignment 2
+
+#Question 1
+
+create table employee(
+empno int primary key,
+empname varchar(25),
+deptid varchar(10)
+);
+desc employee
+
+insert all
+into employee(empno ,empname ,deptid )
+values(1,'sarbas','me1')
+into employee(empno ,empname ,deptid )
+values(2,'gokul','me2')
+into employee(empno ,empname ,deptid )
+values(3,'godwin','me3')
+into employee(empno ,empname ,deptid )
+values(4,'akash','me4')
+select * from dual;
+select * from employee
+
+
+create table employeecopy(
+empid int primary key,
+name varchar(25),
+id varchar(10)
+);
+desc employeecopy
+
+
+insert into employeecopy (empid ,name ,id)
+select empno ,empname ,deptid from employee;
+
+select * from employeecopy
+
+select * from employee
+
+#Question 2
+
+insert into employee values(5,'ragul','me5')
+
+#Question 3
+
+create table department(
+deptno int primary key,
+deptname varchar(20) unique,
+floor number(2),
+location varchar(20)
+);
+
+create table employee(
+  empNo int primary key not null,
+  managerId int not null,
+  firstName varchar(20),
+  lastName varchar(20),
+  userId int unique,
+  deptNo int,
+  salary number(6,2),
+  commision number(4,2),
+  joiningDate varchar(10),
+  designation char(15),
+  constraint empl01 foreign key(deptNo) references department(deptNo)
+  on delete cascade);
+
+desc employee
+
+insert into department values(10,'Accounts',2,'Trivandrum')
+select * from department
+insert into employee values(100,50,'sarbas','m',10001,10,6000,50,'11/04/2019','Accountent')
+select * from employee
+
+#Question 5
+
+select * from customer
+insert into customer values(10,'sarbas','kozhikode')
+delete from customer where custno=10
+
+#Question 6
+
+insert into employee values(105,1001,'sarbas',null,null,null,null,null,null,null)
+
+#Question 7
+
+update customer set adress='New Delhi' where custno=10
+
+#question 8
+
+select * from employee
+
+delete from employee where salary>5000
+
+#Question 9
+
+update employee set deptno=15, firstName='jay' where empNo=100;
+
+#Question 10
+select * from student
+insert into student values('kk',25,null,null,'02/01/1998','kerala')
+
+update student set email='na' where email is null
+
+#Question 11
+
+delete from student where age>20;
+
+#Question 12
+
+delete from student where email is null and mobno is null
+
+#Question 13
+
+delete from student where dob like '06/05/%'
+
+
+#Question 14
+create table student(
+studentname varchar(50),
+age int,
+mobno number(10),
+email varchar(40),
+dob date,
+state varchar(20)
+);
+insert into student(studentname,age,mobno,email,dob,state)
+values('arunadf',18,9645896525,'hddj@gmail.com',to_date('08/10/2004','dd/mm/yy'),'kerala')
+
+update student set studentname='binu',dob=current_date where studentname like '____a%'
+select * from student
+
+#Question 15
+
+delete from student where state like '%a'
+
+#Question 16
+
+update student set studentname='jan' where dob like '01%'
+
+#Question 17
+delete from student where state like 't%'
