@@ -1,0 +1,175 @@
+Assignment 4
+
+#Question 1
+
+select distinct e.empname from
+employee e
+join employee f
+on e.empid=f.managerid order
+
+#Question 2
+
+ same as 1
+
+#Question 3
+  select * from employee
+  select * from department 
+
+select empname,deptname,'Every year '|| empname ||' of '|| deptname ||' earns amount ' || TO_CHAR(salary*12) as "Annual Income Report" from employee
+inner join department
+on employee.deptno=department.deptno
+
+#Question 4
+
+ same as 3
+
+#Question 5
+
+select deptname,empname  from employee
+inner join department
+on employee.deptno=department.deptno
+order by deptname,empname desc
+
+#Question 6
+
+insert into department values(5,'shoe','thailand','rajeev')
+insert into department values(6,'toy','china','godwin')
+
+insert into employee values(11,'anu','female','worker',25000,5,15)
+insert into employee values(12,'kumar','male','worker',30000,6,18)
+
+select empname,deptname from employee
+inner join department
+on employee.deptno=department.deptno
+where department.deptname='toy' or department.deptname='shoe'
+
+
+
+#Question 7
+
+select empname||' , '||deptname as "Name and Department" from employee
+inner join department
+on employee.deptno=department.deptno
+
+#Question 8
+
+insert into department values(7,'mobile','dallas','james')
+insert into employee values(13,'ragul','male','worker',35000,7,18)
+insert into employee values(14,'ral','male','worker',35000,7,18)
+
+select * from employee
+select * from department
+
+
+select empname,designation,department.deptno,deptname from employee
+inner join department
+on employee.deptno=department.deptno
+where department.deptno=7
+
+#Question 9
+
+select emp.empname as Employee, mgr.empname as Manager
+from employee emp
+join employee mgr
+on emp.managerid = mgr.empid
+
+#Question 10
+
+select emp.empname as Employee,emp.managerid as "Manager Number",mgr.empname as Manager
+from employee emp
+left outer join employee mgr
+on emp.managerid = mgr.empid
+
+#Question 11
+
+select * from employee
+
+select E.EMPNAME,D.DEPTNO from employee E left join
+department D 
+ON E.DEPTNO=D.DEPTNO
+where D.DEPTNO=(select DEPTNO from employee where EMPNAME='Pam')
+
+#Question 12
+
+select designation as "List of Job in department 1",location from employee
+inner join department
+on employee.deptno=department.deptno
+where department.DEPTNO=1
+
+select * from department
+
+#Question 13
+
+create table student(
+studentid int,
+name varchar(25),
+batchid int
+)
+
+create table batch(
+batchid int,
+batchname varchar(25),
+coursename varchar(30),
+studentsno int
+)
+insert into student values(1,'gokul',100)
+insert into student values(2,'rahul',100)
+insert into student values(3,'gokul',101)
+insert into student values(4,'jay',101)
+insert into student values(5,'jayan',102)
+select * from student
+
+insert into batch values(100,'propel feb','mechanical',15)
+insert into batch values(101,'propel dec','cs',10)
+insert into batch values(102,'propel jun','EEE',18)
+insert into batch values(103,'propel jan','EC',15)
+
+select * from batch
+
+select name,coursename from student
+inner join batch
+on student.batchid=batch.batchid
+
+
+#Question 14
+
+select name,batchname from student
+inner join batch
+on student.batchid=batch.batchid
+
+#Question 15
+
+select name,coursename from student
+right outer join batch
+on student.batchid=batch.batchid
+
+
+
+#Question 16
+
+create table customer1(
+custid int primary key,
+custname varchar(30)
+)
+
+create table order1(
+orderid int primary key,
+custid int,
+orderdate date,
+items varchar(200),
+price number(10,2)
+)
+
+insert into customer1 values(1,'rahul')
+insert into customer1 values(2,'gokul')
+insert into customer1 values(3,'ravi')
+insert into customer1 values(4,'akash')
+select * from customer1
+
+insert into order1 values(1001,1,'01/12/2021','vegetables',100)
+insert into order1 values(1002,3,'07/13/2021','fruit',105)
+select * from order1
+
+select custname,orderdate,items  from customer1
+inner join order1
+on customer1.custid=order1.custid
