@@ -1,0 +1,157 @@
+#Assignment 3	
+
+#Question 1
+
+create table My_Employee(
+employid int,
+firstname varchar(50),
+lastname varchar(50),
+salary number(10,2)
+);
+
+insert all
+into My_Employee(employid,firstname,lastname,salary)
+values(1,'sarbas','muthangal',15000)
+into My_Employee(employid,firstname,lastname,salary)
+values(2,'gokul','krishnan',25000)
+into My_Employee(employid,firstname,lastname,salary)
+values(3,'ezhil','bharathik',10500)
+select * from dual;
+select * from My_Employee
+select substr(firstname,1,1) from My_Employee
+select substr(lastname,1,7) from My_Employee
+
+select concat(substr(firstname,1,1),substr(lastname,1,7))  as "userid" from My_Employee
+
+#Question 2
+select salary from My_Employee where salary>1000
+
+#Question 3
+insert all
+into My_Employee(employid,firstname,lastname,salary)
+values(4,'jksarbas','muthangal',15000)
+into My_Employee(employid,firstname,lastname,salary)
+values(5,'mygokul','krishnan',25000)
+select * from dual;
+select initcap(firstname),length(firstname) from My_Employee where firstname like 'j%' or firstname like 'm%'
+
+#Question 4
+select * from My_Employee
+
+select instr(concat(firstname,lastname),'a',1) from My_Employee
+select concat(firstname,lastname)as "fullname" from My_Employee
+
+#Question 5
+select min(salary) from My_Employee
+select max(salary) from My_Employee
+select sum(salary) from My_Employee
+select avg(salary) from My_Employee
+
+#Question 6
+
+select employid,firstname,salary,salary+.15*salary as "new salary" from my_Employee
+
+#Question 7
+
+select firstname,LPAD(salary,15,'$') as "SALARY" from My_Employee;
+
+#Question 8
+
+create table My_Employee(
+employid int,
+firstname varchar(50),
+lastname varchar(50),
+salary number(10,2),
+commission varchar(10)
+);
+
+insert all
+into My_Employee(employid,firstname,lastname,salary,commission )
+values(1,'sarbas','muthangal',15000,50)
+into My_Employee(employid,firstname,lastname,salary,commission )
+values(2,'gokul','krishnan',25000,null)
+into My_Employee(employid,firstname,lastname,salary,commission )
+values(3,'ezhil','bharathik',10500,150)
+into My_Employee(employid,firstname,lastname,salary,commission )
+values(4,'jksarbas','muthangal',15000,100)
+into My_Employee(employid,firstname,lastname,salary,commission )
+values(5,'mygokul','krishnan',25000,null)
+select * from dual;
+select * from My_Employee
+
+select firstname,nvl(to_char(commission ),'no commission') from My_Employee
+
+
+#Question 9
+
+create table student(
+studentid int,
+firstname varchar(20),
+lastname varchar(20)
+);
+
+insert all
+into student(studentid ,firstname ,lastname)
+values(1,'hdsjklslsf','bdkkdks')
+into student(studentid ,firstname ,lastname)
+values(2,'yryrrjfjfjut','jgkgd')
+into student(studentid ,firstname ,lastname)
+values(3,'wrwthdhfjjti','gdgsf')
+select * from dual;
+
+select * from student
+
+select studentid ,firstname ,lastname from student where length(firstname)=10
+
+#Question 10
+
+create table employee(
+empid int,
+empname varchar(25),
+managerid int,
+salary number(10,2),
+hiredate date,
+bonus number(10,2)
+);
+insert all
+into employee(empid ,empname,managerid ,salary ,hiredate ,bonus )
+values(1,'sarbas',100,1000,'12/11/2020',null)
+into employee(empid ,empname,managerid ,salary ,hiredate ,bonus )
+values(2,'vishnu',101,800,'07/10/2021',null)
+into employee(empid ,empname,managerid ,salary ,hiredate ,bonus )
+values(3,'karthik',100,1130,'02/08/2020',null)
+into employee(empid ,empname,managerid ,salary ,hiredate ,bonus )
+values(4,'jsy',null,1450,'11/11/2020',null)
+insert into employee(empid ,empname,managerid ,salary ,hiredate ,bonus )
+values(5,'sujith',102,1650,'11/11/2020',null)
+insert into employee(empid ,empname,managerid ,salary ,hiredate ,bonus )
+values(6,'ajay',101,1850,'11/11/2020',null)
+insert into employee(empid ,empname,managerid ,salary ,hiredate ,bonus )
+values(7,'ajay',101,2250,'11/11/2020',null)
+insert into employee(empid ,empname,managerid ,salary ,hiredate ,bonus )
+values(8,'aju',103,2250,'11/11/2020',null)
+
+
+select * from dual;
+select * from employee
+truncate table employee
+update employee set bonus=round(salary/1000)*1000*.3*12
+select managerid,min(salary) from employee where managerid is not null group by managerid having min(salary)>1000 order by min(salary) desc;
+
+#Question 11
+
+select empname,hiredate ,to_char(to_date(next_day(add_months(hiredate ,6),'MONDAY')),'Day , Ddspth "of" Month , YYYY') as "Salary review date" from employee
+
+or
+select empname,to_char(hiredate,'day , ddspth "of" mon yyyy'),to_char(next_day(add_months(hiredate,6),'monday'),'day,ddspth "of" mon yyyy')from employee
+
+
+#Question 12
+
+SELECT empname,round(MONTHS_BETWEEN(SYSDATE,hiredate )) AS "MONTHS_WORKED" FROM
+employee ORDER BY MONTHS_WORKED ;
+
+
+#Question 13
+
+select empname,bonus from employee
