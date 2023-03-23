@@ -1,0 +1,222 @@
+#Question 1
+
+/*FUNCTION CREATION*/
+create or replace function get_count(no in number)
+return number
+IS
+NO_OF_EMP NUMBER;
+DEPTID EMP.DEPTNO%TYPE;
+BEGIN
+DEPTID:=no;
+SELECT COUNT(*) INTO NO_OF_EMP FROM EMP WHERE DEPTNO=DEPTID;
+RETURN NO_OF_EMP ;
+END; 
+
+/*FUNCTION CALLING*/
+DECLARE
+id number;
+num int;
+BEGIN
+num:=:number;
+id:=get_count(num);
+dbms_output.put_line(id);
+END;
+
+=========================================================
+#Question 2
+
+/*FUNCTION CREATION*/
+create or replace function percentages(ENTER_MARK IN NUMBER,ENTER_MAX_MARK IN NUMBER)
+RETURN NUMBER
+IS
+MARK NUMBER;
+MAXMARK NUMBER;
+PERCENTAGE NUMBER;
+BEGIN
+MARK:=ENTER_MARK;
+MAXMARK:=ENTER_MAX_MARK;
+PERCENTAGE:=(MARK/MAXMARK)*100;
+dbms_output.put_line('PERCENTAGE IS '||PERCENTAGE );
+RETURN PERCENTAGE ;
+END;
+
+/*FUNCTION CALL*/
+DECLARE
+MARK NUMBER;
+MAXMARK NUMBER;
+PERCENTAGE NUMBER;
+BEGIN
+MARK:=:ENTER_MARK;
+MAXMARK :=:ENTER_MAX_MARK;
+PERCENTAGE:=percentages(MARK,MAXMARK );
+END;
+==================================================================
+#Question 3
+create or replace procedure empview(a in varchar)
+is
+id varchar(30);
+name varchar(30);
+depart number;
+begin
+id:=a;
+select empid,empname,deptno into id,name,depart from employee where empid=id;
+dbms_output.put_line('name is '||name ||', depart is '||depart);
+end;
+
+declare
+id varchar(30);
+name varchar(30);
+depart number;
+begin
+id:=:a;
+empview(id);
+end;
+
+
+
+===============================================================
+#Question 4
+/*function*/
+create or replace function average(ENTER_DEPARTMENT IN NUMBER)
+RETURN NUMBER
+IS
+DEPTID EMP.DEPTNO%TYPE;
+AVG_SALARY EMP.SAL%TYPE;
+BEGIN
+DEPTID:=ENTER_DEPARTMENT;
+SELECT AVG(SAL) INTO AVG_SALARY FROM EMP WHERE DEPTNO=DEPTID;
+dbms_output.put_line('AVAERAGE SALARY OF '||DEPTID||' IS '||AVG_SALARY );
+RETURN AVG_SALARY;
+END;
+/*function calling*/
+DECLARE
+DEPTID EMP.DEPTNO%TYPE;
+AVG_SALARY EMP.SAL%TYPE;
+BEGIN
+DEPTID :=:ENTER_ID;
+AVG_SALARY:=average(DEPTID );
+END;
+================================================================
+#Question 5
+create table supplier(
+supplier_id int primary key,
+supplier_name varchar(30),
+location varchar(30)
+)
+create or replace procedure supply(A in int,B in varchar,C IN VARCHAR)
+IS
+supplier_id int;
+supplier_name varchar(30);
+location varchar(30);
+BEGIN
+supplier_id:=A;
+supplier_name :=B;
+location :=C;
+insert into supplier values(supplier_id,supplier_name ,location );
+dbms_output.put_line('ID ; '|| supplier_id||' NAME ; '||supplier_name ||' LOCATION ; '||location );
+END;
+
+
+declare
+supplier_id int;
+supplier_name varchar(30);
+location varchar(30);
+BEGIN
+supplier_id:=:ID;
+supplier_name:=:NAME;
+location:=:LOC;
+supply(supplier_id,supplier_name,location);
+END;
+================================================================================================
+#Question 6
+
+create or replace procedure update_employee(A IN VARCHAR,B IN VARCHAR,C IN VARCHAR,D IN VARCHAR,E IN NUMBER,F IN NUMBER,G IN NUMBER)
+IS
+ID_K VARCHAR(30);
+NAME_K VARCHAR(30);
+GENR_K VARCHAR(30);
+DESIG_K VARCHAR(30);
+SAL_K NUMBER;
+DEPT_K NUMBER;
+MANAGER_K NUMBER;
+BEGIN
+ID_K:=A;
+NAME_K:=B;
+GENR_K:=C;
+DESIG_K:=D;
+SAL_K:=E;
+DEPT_K:=F;
+MANAGER_K:=G;
+INSERT INTO EMPLOYEE VALUES(ID_K,NAME_K,GENR_K,DESIG_K,SAL_K,DEPT_K,MANAGER_K);
+dbms_output.put_line('EMPLOYEE UPDATED');
+END;
+
+DECLARE
+ID_K VARCHAR(30);
+NAME_K VARCHAR(30);
+GENR_K VARCHAR(30);
+DESIG_K VARCHAR(30);
+SAL_K NUMBER;
+DEPT_K NUMBER;
+MANAGER_K NUMBER;
+BEGIN
+ID_K:=:A;
+NAME_K:=:B;
+GENR_K:=:C;
+DESIG_K:=:D;
+SAL_K:=:E;
+DEPT_K:=:F;
+MANAGER_K:=:G;
+update_employee(ID_K,NAME_K,GENR_K,DESIG_K,SAL_K,DEPT_K,MANAGER_K);
+END;
+
+=============================================================================================
+#Question 7
+
+CREATE OR REPLACE procedure ADDING(ENTER_DEPARTMENT_NO IN INT,ENTER_NAME IN VARCHAR,ENTER_LOCATION IN VARCHAR)
+IS
+DEPTID DEPT.DEPTNO%TYPE;
+NAME DEPT.DNAME%TYPE;
+LOCATION DEPT.LOC%TYPE;
+BEGIN
+DEPTID :=ENTER_DEPARTMENT_NO;
+NAME :=ENTER_NAME;
+LOCATION:=ENTER_LOCATION;
+INSERT INTO DEPT VALUES(DEPTID ,NAME,LOCATION);
+dbms_output.put_line('DEPARTMENT ID ; '|| DEPTID ||' NAME ; '|| NAME||' LOCATION ; '|| LOCATION);
+END;
+
+
+DECLARE
+DEPTID DEPT.DEPTNO%TYPE;
+NAME DEPT.DNAME%TYPE;
+LOCATION DEPT.LOC%TYPE;
+BEGIN
+DEPTID :=:ENTER_DEPARTMENT_NO;
+NAME :=:ENTER_NAME;
+LOCATION:=:ENTER_LOCATION;
+ADDING(DEPTID,NAME ,LOCATION);
+END;
+=================================================================================
+#Question 8
+
+create or replace procedure salaryadd(emp_no in number,amountadd in number)
+is
+employee_number employee.empid%type;
+amount employee.salary%type;
+begin
+employee_number:=emp_no;
+amount :=amountadd ;
+UPDATE employee SET SALARY=amount WHERE EMPID=employee_number;
+dbms_output.put_line('SALARY UPDATED');
+end;
+
+
+declare
+employee_number employee.empid%type;
+amount employee.salary%type;
+begin
+employee_number:=:emp_no;
+amount :=:updated_salary;
+salaryadd(employee_number,amount);
+end;
