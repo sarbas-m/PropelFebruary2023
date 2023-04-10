@@ -1,0 +1,123 @@
+public class Assignment1 {
+
+	public static void main(String[] args) {
+		/*
+		 * 1. For 10 oranges we have to pay Rs.45 what will be the price of 1
+		 * orange. double orange=45; double no=10; double price=(orange/no);
+		 * System.out.println("price of one orange is : "+price);
+		 */
+
+		/*
+		 * 2.Ramu visited the bookstore to buy books for his kid. He bought
+		 * notebooks for Rs.100 and magic pot for Rs.50. How much money did Ramu
+		 * spend in the bookstore?
+		 * 
+		 * int book=100; int pot=50;
+		 * 
+		 * System.out.println("total price is "+total(book,pot));
+		 * 
+		 * }
+		 * 
+		 * private static int total(int book, int pot) {
+		 * 
+		 * return book+pot;
+		 */
+
+		/*
+		 * 3.Read two numbers, divide the first number by the second and print
+		 * the quotient and remainder.
+		 * 
+		 * Scanner input=new Scanner(System.in);
+		 * System.out.println("enter first number : "); int
+		 * a=Integer.parseInt(input.next());
+		 * System.out.println("enter second number : "); int
+		 * b=Integer.parseInt(input.next());
+		 * 
+		 * System.out.println("quotient= "+a/b);
+		 * System.out.println("reminder= "+a%b);
+		 */
+
+		/*
+		 * 4.he distance between two cities (KM) is input through the keyboard.
+		 * Write a program to convert and print this distance in meters, feet,
+		 * inches and centimeters. Scanner input=new Scanner(System.in);
+		 * System.out.println("enter distance in meter: "); double
+		 * distance=Double.parseDouble(input.nextLine());
+		 * 
+		 * System.out.println("distance in meter= "+distance);
+		 * System.out.println("distance in feet= "+distance*3.2808 );
+		 * System.out.println("distance in inches= "+distance*39.3701);
+		 * System.out.println("distance in centimeter= "+distance*100);
+		 */
+
+		/*
+		 * 5. The temperature of a city in Fahrenheit is given. Write a program
+		 * to convert it into Celsius. Scanner input=new Scanner(System.in);
+		 * System.out.println("Enter temp in celcius: "); double
+		 * temp=Double.parseDouble(input.nextLine()); double
+		 * faren=(temp*9)/5+32;
+		 * System.out.println("temperature in faren is "+faren);
+		 */
+
+		/*
+		 * 6. Two numbers are stored in locations i and j. Write a program to
+		 * interchange the numbers. int i = 10; int j = 20;
+		 * 
+		 * System.out.println("Before interchange: i = " + i + ", j = " + j);
+		 * 
+		 * // Interchange the values of i and j int temp = i; i = j; j = temp;
+		 * 
+		 * System.out.println("After interchange: i = " + i + ", j = " + j);
+		 */
+
+		/*
+		 * 7. Raju’s basic salary is given. His dearness allowance is 40% of the
+		 * basic salary and house rent allowance is 20%. Calculate his total
+		 * salary.
+		 * 
+		 * Scanner input=new Scanner(System.in);
+		 * System.out.println("enter salary :"); double
+		 * salary=Double.parseDouble(input.nextLine());
+		 * 
+		 * System.out.println("total salary= "+(salary*.4+salary*.2+salary));
+		 */
+		/*
+		 * 8.Implement a logic to swap two numbers without using a temporary
+		 * variable. int a = 10; int b = 20;
+		 * System.out.println("Before swapping: a = " + a + ", b = " + b);
+		 * 
+		 * a = a + b; b = a - b; a = a - b;
+		 * 
+		 * System.out.println("After swapping: a = " + a + ", b = " + b);
+		 */
+
+		/*
+		 * 9.If a five-digit number is input through the keyboard, write a
+		 * program to calculate the sum of its digits.
+		 * 
+		 * 
+		 * Scanner input = new Scanner(System.in);
+		 * System.out.println("enter five digit number:"); int number =
+		 * Integer.parseInt(input.nextLine());
+		 * 
+		 * int sum = 0; while (number > 0) { sum = sum + number % 10; number =
+		 * number / 10; } System.out.println("The sum of digit is " + sum);
+		 */
+		/*
+		 * 10. If a five-digit number is given, write a program to reverse the
+		 * number.
+		 * 
+		 * 
+		 * System.out.println("Enter five digit number"); Scanner input = new
+		 * Scanner(System.in); String number = input.nextLine();
+		 * System.out.println("Your Entered Name: ");
+		 * System.out.println(number); char num; String numb = ""; for (int i =
+		 * number.length() - 1; i >= 0; i--) { num = number.charAt(i); numb =
+		 * numb + num;
+		 * 
+		 * } System.out.println("Reversed number:" + numb);
+		 */
+
+	}
+
+}
